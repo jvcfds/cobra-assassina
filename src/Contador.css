@@ -1,0 +1,84 @@
+.card {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 120ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-title {
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.card-value {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 8px 0 18px 0;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 80ms ease, filter 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.card .btn-green { background-color: #4caf50; }
+.card .btn-green:hover { filter: brightness(1.08); }
+
+.card .btn-red { background-color: #f44336; }
+.card .btn-red:hover { filter: brightness(1.08); }
+
+.card .btn-blue { background-color: #2196f3; }
+.card .btn-blue:hover { filter: brightness(1.08); }
+
+.history-title {
+  margin-top: 18px;
+  color: #444;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.history-item {
+  font-weight: 700;
+  margin: 2px 0;
+}
+
+.history-item.green { color: #2e7d32; }
+.history-item.red   { color: #c62828; }
+.history-item.blue  { color: #1565c0; }
+
+/* Dark Mode ajustes */
+.app.dark .card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.05);
+}
+
+.app.dark .card-title { color: #f5f5f5; }
+.app.dark .card-value { color: #90caf9; }

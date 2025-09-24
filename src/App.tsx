@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { Contador } from "./Contador";
+import "./App.css";
 
 function App() {
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem("darkMode");
+    return saved ? JSON.parse(saved) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={darkMode ? "app dark" : "app"}>
+      <header className="app-header">
+        <h1>Vários Contadores 🚀</h1>
+        <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? "☀️ Claro" : "🌙 Escuro"}
+        </button>
       </header>
+
+      <div className="grid">
+        <Contador titulo="Cliques" />
+        <Contador titulo="Visitas" />
+        <Contador titulo="Tarefas feitas" />
+      </div>
     </div>
   );
 }
