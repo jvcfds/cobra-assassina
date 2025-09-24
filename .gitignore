@@ -1,1 +1,6 @@
-vic/
+node_modules/
+build/
+dist/
+.cache/
+.vscode/
+.DS_Store
