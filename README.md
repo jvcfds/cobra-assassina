@@ -12,7 +12,8 @@ Este é um projeto de estudo em **React + TypeScript**, onde implementei:
 
 ## 📸 Preview
 
-_(Adicione um print do projeto aqui depois: pressione `Command + Shift + 4` no Mac para tirar um print e subir no GitHub)_
+![Preview do Projeto](./contador-print.png)
+
 
 ---
 
