@@ -15,7 +15,7 @@ function App() {
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <header className="app-header">
-        <h1>Vários Contadores 🚀</h1>
+        <h1>Contadores Pikas na Xéxé</h1>
         <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "☀️ Claro" : "🌙 Escuro"}
         </button>
