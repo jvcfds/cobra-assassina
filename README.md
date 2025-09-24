@@ -1,4 +1,4 @@
-# 🚀 Projeto Contadores com Dark Mode
+#  Projeto Contadores com Dark Mode
 
 Este é um projeto de estudo em **React + TypeScript**, onde implementei:
 
