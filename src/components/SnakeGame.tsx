@@ -1,22 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-
-const gridSize = 20;
-const canvasSize = 400;
+import React, { useState, useEffect, useRef } from "react";
 
 type Position = { x: number; y: number };
 
-export function SnakeGame() {
+export const SnakeGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [snake, setSnake] = useState<Position[]>([{ x: 10, y: 10 }]);
   const [food, setFood] = useState<Position>({ x: 15, y: 15 });
   const [direction, setDirection] = useState<"UP" | "DOWN" | "LEFT" | "RIGHT">("RIGHT");
+  const [gameOver, setGameOver] = useState(false);
 
-  // Captura teclas
+  const gridSize = 20;
+  const canvasSize = 400;
+
+  // Teclado (funciona no PC)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-        e.preventDefault();
-      }
       if (e.key === "ArrowUp" && direction !== "DOWN") setDirection("UP");
       if (e.key === "ArrowDown" && direction !== "UP") setDirection("DOWN");
       if (e.key === "ArrowLeft" && direction !== "RIGHT") setDirection("LEFT");
@@ -29,6 +27,8 @@ export function SnakeGame() {
 
   // Loop do jogo
   useEffect(() => {
+    if (gameOver) return;
+
     const interval = setInterval(() => {
       setSnake((prev) => {
         const newSnake = [...prev];
@@ -51,51 +51,65 @@ export function SnakeGame() {
           newSnake.pop();
         }
 
-        // Game Over
+        // Colisão
         if (
           head.x < 0 ||
           head.y < 0 ||
           head.x >= canvasSize / gridSize ||
           head.y >= canvasSize / gridSize ||
-          newSnake.slice(1).some((p) => p.x === head.x && p.y === head.y)
+          newSnake.slice(1).some((part) => part.x === head.x && part.y === head.y)
         ) {
-          alert("Game Over!");
-          return [{ x: 10, y: 10 }];
+          setGameOver(true);
+          return prev;
         }
 
         return newSnake;
       });
-    }, 250); // 👈 velocidade ajustada
+    }, 200);
 
     return () => clearInterval(interval);
-  }, [direction, food]);
+  }, [direction, food, gameOver]);
 
   // Desenhar
   useEffect(() => {
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
 
+    // fundo
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvasSize, canvasSize);
 
+    // cobra
     ctx.fillStyle = "lime";
     snake.forEach((part) => {
       ctx.fillRect(part.x * gridSize, part.y * gridSize, gridSize, gridSize);
     });
 
+    // comida
     ctx.fillStyle = "red";
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
   }, [snake, food]);
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h2>🐍 Snake Game</h2>
+      <h1 style={{ color: "white" }}>🐍 Cobra Assassina</h1>
+      {gameOver && <h2 style={{ color: "red" }}>Game Over</h2>}
       <canvas
         ref={canvasRef}
         width={canvasSize}
         height={canvasSize}
         style={{ border: "2px solid white" }}
       />
+
+      {/* Botões para celular */}
+      <div style={{ marginTop: "20px" }}>
+        <button onClick={() => setDirection("UP")}>⬆️</button>
+        <div>
+          <button onClick={() => setDirection("LEFT")}>⬅️</button>
+          <button onClick={() => setDirection("DOWN")}>⬇️</button>
+          <button onClick={() => setDirection("RIGHT")}>➡️</button>
+        </div>
+      </div>
     </div>
-  ); // <-- fecha o return certinho
-} // <-- fecha o componente
+  );
+};
