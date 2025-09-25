@@ -102,14 +102,12 @@ export const SnakeGame: React.FC = () => {
       />
 
       {/* Botões para celular */}
-      <div style={{ marginTop: "20px" }}>
-        <button onClick={() => setDirection("UP")}>⬆️</button>
-        <div>
-          <button onClick={() => setDirection("LEFT")}>⬅️</button>
-          <button onClick={() => setDirection("DOWN")}>⬇️</button>
-          <button onClick={() => setDirection("RIGHT")}>➡️</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+      <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+  <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("UP")}>⬆️</button>
+  <div style={{ display: "flex", gap: "10px" }}>
+    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("LEFT")}>⬅️</button>
+    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("DOWN")}>⬇️</button>
+    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("RIGHT")}>➡️</button>
+  </div>
+</div>
+
