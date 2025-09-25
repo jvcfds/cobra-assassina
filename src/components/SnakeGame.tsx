@@ -90,24 +90,24 @@ export const SnakeGame: React.FC = () => {
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
   }, [snake, food]);
 
-  return (
+    return (
     <div style={{ textAlign: "center" }}>
-      <h1 style={{ color: "white" }}>🐍 Cobra Assassina</h1>
-      {gameOver && <h2 style={{ color: "red" }}>Game Over</h2>}
       <canvas
         ref={canvasRef}
         width={canvasSize}
         height={canvasSize}
-        style={{ border: "2px solid white" }}
+        style={{ border: "2px solid #fff", background: "#111" }}
       />
 
       {/* Botões para celular */}
       <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-  <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("UP")}>⬆️</button>
-  <div style={{ display: "flex", gap: "10px" }}>
-    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("LEFT")}>⬅️</button>
-    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("DOWN")}>⬇️</button>
-    <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("RIGHT")}>➡️</button>
-  </div>
-</div>
-
+        <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("UP")}>⬆️</button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("LEFT")}>⬅️</button>
+          <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("DOWN")}>⬇️</button>
+          <button style={{ fontSize: "2rem", padding: "10px 20px" }} onClick={() => setDirection("RIGHT")}>➡️</button>
+        </div>
+      </div>
+    </div>
+  );
+}
